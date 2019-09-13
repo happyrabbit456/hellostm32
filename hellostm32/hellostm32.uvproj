@@ -372,9 +372,9 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define></Define>
+              <Define>USE_STDPERIPH_DRIVER,STM32F10X_LD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\Libraries\CMSIS\CM3\CoreSupport;.\inc;.\App</IncludePath>
+              <IncludePath>.\Libraries\CMSIS\CM3\CoreSupport;.\Libraries\STM32F10x_StdPeriph_Driver\inc;.\Libraries\STM32F10x_StdPeriph_Driver\src;.\App</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -440,11 +440,6 @@
               <FileName>stm32f10x_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\App\stm32f10x_it.c</FilePath>
-            </File>
-            <File>
-              <FileName>system_stm32f10x.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\App\system_stm32f10x.c</FilePath>
             </File>
             <File>
               <FileName>stm32f10x_conf.h</FileName>
@@ -700,6 +695,21 @@
               <FileName>stm32f10x_wwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\stm32f10x.h</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f10x.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\system_stm32f10x.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -1,6 +1,6 @@
 /**
   ******************************************************************************
-  * @file    Project/STM32F10x_StdPeriph_Template/main.c 
+  * @file    Project/STM32F10x_StdPeriph_Template/main.c
   * @author  MCD Application Team
   * @version V3.5.0
   * @date    08-April-2011
@@ -17,11 +17,13 @@
   *
   * <h2><center>&copy; COPYRIGHT 2011 STMicroelectronics</center></h2>
   ******************************************************************************
-  */  
+  */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
 #include <stdio.h>
+
+
 
 /***********************************************************************************
 Keil 5 工程名字修改教程
@@ -34,6 +36,10 @@ Keil 5 工程名字修改教程
 *************************************************************************************/
 
 /* Private functions ---------------------------------------------------------*/
+void SoftwareDelay(uint32_t Cnt)
+{
+    while(Cnt--);
+}
 
 /**
   * @brief  Main program.
@@ -42,18 +48,28 @@ Keil 5 工程名字修改教程
   */
 int main(void)
 {
-  /*!< At this stage the microcontroller clock setting is already configured, 
-       this is done through SystemInit() function which is called from startup
-       file (startup_stm32f10x_xx.s) before to branch to application main.
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f10x.c file
-     */  
- 
+    /*!< At this stage the microcontroller clock setting is already configured,
+         this is done through SystemInit() function which is called from startup
+         file (startup_stm32f10x_xx.s) before to branch to application main.
+         To reconfigure the default setting of SystemInit() function, refer to
+         system_stm32f10x.c file
+       */
 
-  /* Infinite loop */
-  while (1)
-  {
-  }
+    RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOB, ENABLE);
+
+		GPIO_InitTypeDef GPIO_InitStructure;
+    GPIO_InitStructure.GPIO_Pin =  GPIO_Pin_0;                        //引脚
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;//GPIO_Speed_50MHz;//GPIO_Speed_10MHz;                  //频率(10M)
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;                   //输出类型(推挽式输出)
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+
+
+    /* Infinite loop */
+    while (1)
+    {
+        GPIOB->ODR ^= GPIO_Pin_0;                                  //LED变化
+        SoftwareDelay(0x100000);                     //软件延时
+    }
 }
 
 
@@ -67,13 +83,13 @@ int main(void)
   * @retval None
   */
 void assert_failed(uint8_t* file, uint32_t line)
-{ 
-  /* User can add his own implementation to report the file name and line number,
-     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+{
+    /* User can add his own implementation to report the file name and line number,
+       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
 
-  /* Infinite loop */
-  while (1)
-  {
-  }
+    /* Infinite loop */
+    while (1)
+    {
+    }
 }
 #endif
